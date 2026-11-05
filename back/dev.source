@@ -1,0 +1,2 @@
+source .venv/bin/activate
+export NOTES_APP_DB_PATH="$HOME/.local/share/notes-app-dev/notes.sqlite3"

@@ -1,1 +1,28 @@
-specs/
+# local files
+dev/
+.env
+.env.*
+!.env.example
+
+# front
+node_modules/
+dist/
+*.tsbuildinfo
+
+# python
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# sqlite db
+*.db
+*.db-*
+*.sqlite
+*.sqlite-*
+*.sqlite3
+*.sqlite3-*
+
+# Logs
+*.log
