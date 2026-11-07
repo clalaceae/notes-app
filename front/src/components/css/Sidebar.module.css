@@ -22,14 +22,14 @@
 }
 
 .sb button {
-  --size: calc(var(--width) - 10px) ;
+  --b-size: calc(var(--sb-width) - 10px) ;
   padding: 5px;
 
   border: none;
   border-radius: 10px;
 
-  width: var(--size);
-  height: var(--size);
+  width: var(--b-size);
+  height: var(--b-size);
   background-color: inherit;
 }
 
@@ -47,10 +47,10 @@
 
 /* DEV */
 
-.sb button {
+/* .sb button {
   outline: 1px solid red;
 }
 
 .sb button svg {
   outline: 1px solid cyan;
-}
+} */

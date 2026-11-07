@@ -4,7 +4,7 @@ import Home from './pages/Home'
 import { usePreventPinchZoom } from './hooks/usePreventPinchZoom'
 
 function App() {
-  // usePreventPinchZoom()
+  usePreventPinchZoom()
 
   return (
     <Routes>
