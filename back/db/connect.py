@@ -25,10 +25,10 @@ def connect_db() -> sqlite3.Connection:
     # create parent dir if nonexistent
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    connection = sqlite3.connect(path)
-    connection.row_factory = sqlite3.Row
+    conn = sqlite3.connect(path)
+    conn.row_factory = sqlite3.Row
 
     # enable relationship checks on connection
-    connection.execute("PRAGMA foreign_keys = ON")
+    conn.execute("PRAGMA foreign_keys = ON")
 
-    return connection
+    return conn

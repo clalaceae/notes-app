@@ -4,12 +4,21 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from contextlib import asynccontextmanager
 from db.migrations import migrate_db
 
+# 
+# FastAPI Setup
+# 
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     migrate_db()
     yield
 
 app = FastAPI(lifespan=lifespan)
+
+
+# 
+# Prevent write requests from unauthorised
+# 
 
 app.add_middleware(
     TrustedHostMiddleware,
@@ -35,6 +44,11 @@ async def check_write_origin(request: Request, call_next):
 
     return await call_next(request)
 
-@app.get("/api/test")
-def test():
-    return {"status": "ok"}
+
+# 
+# Router
+# 
+
+from routes import notes_router
+
+app.include_router(notes_router)
