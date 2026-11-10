@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 from contextlib import asynccontextmanager
-from db.migrations import migrate_db
+from db import database
 
 # 
 # FastAPI Setup
@@ -10,7 +10,7 @@ from db.migrations import migrate_db
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    migrate_db()
+    database.migrate()
     yield
 
 app = FastAPI(lifespan=lifespan)
@@ -49,6 +49,6 @@ async def check_write_origin(request: Request, call_next):
 # Router
 # 
 
-from routes import notes_router
+from routes import router
 
-app.include_router(notes_router)
+app.include_router(router)
