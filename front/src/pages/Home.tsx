@@ -1,9 +1,12 @@
 import Layout from '../components/Layout'
+import styles from './css/Home.module.css'
 
 export function Home() {
   return (
     <Layout>
-        home
+      <div className={styles.home}>
+
+      </div>
     </Layout>
   )
 }

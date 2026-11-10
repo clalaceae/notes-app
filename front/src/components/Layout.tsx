@@ -1,5 +1,5 @@
 import { type ReactNode } from 'react'
-import {Sidebar} from './Sidebar'
+import Sidebar from './Sidebar'
 import styles from './css/Layout.module.css'
 
 type LayoutProps = {
