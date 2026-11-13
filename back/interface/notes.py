@@ -1,10 +1,11 @@
-from base import I
+from base import I, _ostr
+
 
 class Notes(I):
     """
     Interface for performing SQL related to notes
     """
-    def insert(self, content: str, offset: str = None, timezone: str = None):
+    def insert(self, content: str, offset: _ostr = None, timezone: str = None):
         """
         Insert a new note
         """
@@ -14,7 +15,7 @@ class Notes(I):
         if bool(offset) != bool(timezone):
             raise ValueError("Offset and timezone must occur together")
         
-        self.conn.execute(f"""
+        self.conn.execute("""
         --sql
             INSERT INTO notes (id, content, c_at, c_offset, c_timezone)
             VALUES (:id, :cn, :ca, :co, :ct)
@@ -23,8 +24,8 @@ class Notes(I):
             'id': id,
             'cn': content,
             'ca': c_at,
-            'co': offset,       # None becomes
-            'ct': timezone,   # SQL NULL
+            'co': offset,   # None becomes
+            'ct': timezone, # SQL NULL
         })
 
         return
@@ -33,7 +34,7 @@ class Notes(I):
         """
         Get a note
         """
-        row = self.conn.execute(f"""
+        row = self.conn.execute("""
         --sql
             SELECT * from notes
             WHERE id = :id
@@ -42,9 +43,9 @@ class Notes(I):
             'id': id,
         })
 
-        return id
+        return row
 
-    def update(self, id: str, content: str, offset: str = None, timezone: str = None):
+    def update(self, id: str, content: str, offset: _ostr = None, timezone: _ostr = None):
         """
         Update a note
         """
@@ -53,7 +54,7 @@ class Notes(I):
         if bool(offset) != bool(timezone):
             raise ValueError("Offset and timezone must occur together")
         
-        self.conn.execute(f"""
+        self.conn.execute("""
         --sql
             UPDATE notes
             SET content = :cn
@@ -76,7 +77,7 @@ class Notes(I):
         """
         Delete a note
         """
-        self.conn.execute(f"""
+        self.conn.execute("""
         --sql
             DELETE FROM notes
             WHERE id = :id
@@ -92,7 +93,7 @@ class Notes(I):
         Get list of notes
         TODO maintain a connection with a single notes list open, call fetchmany on scroll
         """
-        rows = self.conn.execute(f"""
+        rows = self.conn.execute("""
         --sql
             SELECT * FROM notes
             ORDER BY c_at ASC, id ASC

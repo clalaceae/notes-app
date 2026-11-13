@@ -36,6 +36,7 @@ CREATE TABLE tags (
 -- note_tag --
 -- note_id: UUID in notes
 -- tag_id:  UUID in tags
+-- combined primary key
 CREATE TABLE note_tags (
     note_id TEXT    NOT NULL    REFERENCES notes(id) ON DELETE CASCADE
 ,   tag_id  TEXT    NOT NULL    REFERENCES tags(id) ON DELETE CASCADE

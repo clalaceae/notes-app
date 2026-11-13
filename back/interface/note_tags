@@ -1,6 +1,0 @@
-from base import I
-
-class NoteTags(I):
-    """
-    Interface for performing SQL related to note-tag relationships
-    """

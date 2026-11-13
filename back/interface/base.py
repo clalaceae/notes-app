@@ -2,6 +2,8 @@ from sqlite3 import Connection
 from uuid import uuid4, UUID
 import datetime as dt
 
+type _ostr = str | None
+
 class I():
     """
     Base class for Notes, Tags
