@@ -21,6 +21,7 @@ CREATE TABLE notes (
 -- tags --
 -- id:          UUID
 -- name:        UTF-8, format: "parent/child"
+-- pid:         UUID of parent tag | NULL
 -- is_system:   1 for untitled/empty, 0 otherwise
 -- deleting parent tag deletes child tag.
 CREATE TABLE tags (
@@ -35,7 +36,7 @@ CREATE TABLE tags (
 -- note_tag --
 -- note_id: UUID in notes
 -- tag_id:  UUID in tags
-CREATE TABLE note_tag (
+CREATE TABLE note_tags (
     note_id TEXT    NOT NULL    REFERENCES notes(id) ON DELETE CASCADE
 ,   tag_id  TEXT    NOT NULL    REFERENCES tags(id) ON DELETE CASCADE
 ,   PRIMARY KEY (note_id, tag_id)

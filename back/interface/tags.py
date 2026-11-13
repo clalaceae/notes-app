@@ -6,7 +6,7 @@ class Tags(I):
     """
     def insert(self, name: str, pid: str = None):
         """
-        Insert a new tag into table
+        Insert a new tag
         """
         id = self._new_id()
 
@@ -46,7 +46,7 @@ class Tags(I):
 
     def delete(self, id: str):
         """
-        Delete a tag from table
+        Delete a tag
         """
         self.conn.execute(f"""
         --sql
@@ -61,7 +61,7 @@ class Tags(I):
 
     def list(self):
         """
-        Get list of tags in table
+        Get list of tags
         TODO fetch amount or select depending on implementation (TBD)
         """
         rows = self.conn.execute(f"""

@@ -6,7 +6,7 @@ class Notes(I):
     """
     def insert(self, content: str, offset: str = None, timezone: str = None):
         """
-        Insert a new note into the table
+        Insert a new note
         """
         id = self._new_id()
         c_at = self._now()
@@ -31,7 +31,7 @@ class Notes(I):
 
     def get(self, id: str):
         """
-        Get a note from table
+        Get a note
         """
         row = self.conn.execute(f"""
         --sql
@@ -74,7 +74,7 @@ class Notes(I):
 
     def delete(self, id: str):
         """
-        Delete a note from table
+        Delete a note
         """
         self.conn.execute(f"""
         --sql
@@ -89,7 +89,7 @@ class Notes(I):
 
     def list(self):
         """
-        Get list of notes in table
+        Get list of notes
         TODO maintain a connection with a single notes list open, call fetchmany on scroll
         """
         rows = self.conn.execute(f"""
